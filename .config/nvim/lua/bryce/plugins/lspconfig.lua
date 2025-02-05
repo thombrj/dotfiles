@@ -64,7 +64,24 @@ return {
 
     local servers = {
       clangd = {},
-      omnisharp = {},
+      omnisharp = {
+        settings = {
+          RoslynExtensionsOptions = {
+            -- Enables support for roslyn analyzers, code fixes and rulesets.
+            EnableAnalyzersSupport = true,
+            -- Enables support for showing unimported types and unimported extension
+            -- methods in completion lists. When committed, the appropriate using
+            -- directive will be added at the top of the current file. This option can
+            -- have a negative impact on initial completion responsiveness,
+            -- particularly for the first few completion sessions after opening a
+            -- solution.
+            EnableImportCompletion = true,
+            -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
+            -- true
+            AnalyzeOpenDocumentsOnly = nil,
+          },
+        }
+      },
       terraformls = {},
       lua_ls = {
         settings = {
