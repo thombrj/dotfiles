@@ -13,7 +13,7 @@
     coa = !git add -A && git commit -m
     cob = checout -b
     resetfile = checkout HEAD --
-    rh1 = reset HEAD~1
+    resetlast = reset HEAD~1
     c = commit
     s = status
     b = "!checkout_fzf() { git branch | fzf | xargs git checkout; }; checkout_fzf"
