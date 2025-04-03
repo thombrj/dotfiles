@@ -23,3 +23,4 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 keymap.set("n", "<leader>pv", "<cmd>Explore<CR>", { desc = "Open NetRW" })
 
+keymap.set({ 'n', 'i' }, "<F1>", "<ESC>")

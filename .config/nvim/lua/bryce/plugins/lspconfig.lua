@@ -56,6 +56,15 @@ return {
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
           end, '[T]oggle Inlay [H]ints')
         end
+
+        if client.supports_method('textDocument/formatting') then
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = event.buf,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = event.buf, id = client.id })
+            end,
+          })
+        end
       end,
     })
 
@@ -90,7 +99,7 @@ return {
               callSnippet = 'Replace',
             },
             diagnostics = {
-              globals = {'vim'},
+              globals = { 'vim' },
             }
           },
         },

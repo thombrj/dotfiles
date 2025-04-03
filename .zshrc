@@ -21,7 +21,7 @@ zinit light zsh-users/zsh-autosuggestions
 autoload -U compinit && compinit
 
 autoload -Uz vcs_info
-precmd(){vcs_info}
+precmd() { vcs_info }
 
 zstyle ':vcs_info:git:*' formats '%b '
 
@@ -51,12 +51,14 @@ alias voteapp="tmuxifier load-session voteapp"
 alias zshrc="nvim ~/.zshrc"
 alias lg="lazygit"
 alias ..="cd .."
+
 killp() {
     local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
     if [[ "$pid" != "" ]]; then
         echo $pid | xargs sudo kill -${1:-9}
     fi
 }
+
 sshlogin() {
   keychain ~/.ssh/id_ed25519
 }
