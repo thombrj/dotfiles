@@ -14,10 +14,10 @@
     cob = checout -b
     resetfile = checkout HEAD --
     resetlast = reset HEAD~1
-    c = commit
-    s = status
-    b = "!checkout_fzf() { git branch | fzf | xargs git checkout; }; checkout_fzf"
-    d = "!delete_fzf() { git branch | fzf | xargs git branch -D; }; delete_fzf"
+    co = commit
+    st = status -s
+    br = "!checkout_fzf() { git branch | fzf | xargs git checkout; }; checkout_fzf"
+    db = "!delete_fzf() { git branch | fzf -m | xargs git branch -D; }; delete_fzf"
     pushup = push -u origin HEAD
     cam = commit --amend --no-edit
 [filter "lfs"]
@@ -30,6 +30,7 @@
 [pager]
     branch = false
 [diff]
+    algorithm = histogram
     tool = vimdiff
 [merge]
 	tool = vimdiff
