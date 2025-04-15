@@ -1,41 +1,38 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
 palette:
   blue: "#8aadf4"
   green: "#a6da95"
   light-blue: "#8bd5ca"
   red: "#ed8796"
-
 blocks:
 - type: prompt
   alignment: left
   segments:
-  - properties:
-      cache_duration: none
-    style: plain 
-    template: "{{ .Path }} "
-    foreground: p:blue 
+  - template: "{{ .Path }} "
+    foreground: p:blue
     type: path
+    style: plain
   - properties:
       branch_icon: ""
       cache_duration: none
       fetch_status: true
-    foreground: p:red
     template: "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus}}{{ end }}"
+    foreground: p:red
     type: git
     style: plain
   - properties:
       branch_icon: ""
       cache_duration: none
       fetch_status: true
+    template: "{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}"
     foreground: p:red
-    template: "{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and
-      (.Working.Changed) (.Staging.Changed) }} |{{ end }}"
     type: git
     style: plain
   - properties:
       fetch_status: true
+    template: "{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}"
     foreground: p:green
-    template: "{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}"
     type: git
     style: plain
   - properties:
@@ -46,10 +43,8 @@ blocks:
     style: plain
   - properties:
       cache_duration: none
-    template: "\n➜ "
+    template: "\n➜  "
     foreground: p:green
     type: text
     style: plain
 version: 3
-final_space: true
-
