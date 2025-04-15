@@ -20,13 +20,13 @@ zinit light zsh-users/zsh-autosuggestions
 # Load completions
 autoload -U compinit && compinit
 
-autoload -Uz vcs_info
-precmd() { vcs_info }
-
-zstyle ':vcs_info:git:*' formats '%b '
-
-setopt PROMPT_SUBST
-PROMPT='%F{green}%n%f %F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
+#autoload -Uz vcs_info
+#precmd() { vcs_info }
+#
+#zstyle ':vcs_info:git:*' formats '%b '
+#
+#setopt PROMPT_SUBST
+#PROMPT='%F{green}%n%f %F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
 bindkey -s ^f "~/dotfiles/scripts/tmux-sessionizer\n"
 bindkey '^H' backward-kill-word
 bindkey "^[[3~" delete-char
@@ -90,5 +90,5 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:/snap/bin"
 export PATH="$PATH:$HOME/.tmuxifier/bin"
 
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/robbyrussel.yaml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/my-prompt.yaml)"
 eval "$(fzf --zsh)"
