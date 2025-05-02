@@ -2,6 +2,9 @@ return {
   "nvim-neotest/neotest",
   dependencies = {
     "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
     "issafalcon/neotest-dotnet",
   },
   config = function()
@@ -15,5 +18,7 @@ return {
         })
       }
     })
+    vim.keymap.set("n", "<leader>te", "<cmd>Neotest summary<CR>", { desc = "Open test explorer" })
+    vim.keymap.set("n", "<leader>tr", "<cmd>Neotest run<CR>", { desc = "Run nearest test" })
   end
 }

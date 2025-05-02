@@ -21,6 +21,7 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
-keymap.set("n", "<leader>pv", "<cmd>Explore<CR>", { desc = "Open NetRW" })
-
+keymap.set("n", "<leader>fe", "<cmd>Explore<CR>", { desc = "Open file explorer" })
+keymap.set("n", "<leader><TAB>", "<C-w>w", { desc = "Tab to new window" })
 keymap.set({ 'n', 'i' }, "<F1>", "<ESC>")
+keymap.set("n", "q:", "<ESC>")

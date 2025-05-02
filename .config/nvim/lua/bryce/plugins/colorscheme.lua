@@ -1,15 +1,12 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    priority = 1000,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "rebelot/kanagawa.nvim",
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme catppuccin")
+      vim.cmd("colorscheme kanagawa")
     end
-  }
+  },
+  {
+    "olimorris/onedarkpro.nvim",
+  },
 }
-
