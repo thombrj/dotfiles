@@ -1,4 +1,9 @@
 eval `keychain --eval --quiet`
+
+if [ -f "$(hostname).zshrc" ]; then
+    source "$(hostname).zshrc"
+fi
+
 ####################
 # zinit
 
@@ -51,7 +56,7 @@ alias voteapp="tmuxifier load-session voteapp"
 alias zshrc="nvim ~/.zshrc"
 alias lg="lazygit"
 alias ..="cd .."
-
+alias daprstartup="podman start \$(podman container list -a -f \"name=dapr\" -q)"
 killp() {
     local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
     if [[ "$pid" != "" ]]; then
