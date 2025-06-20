@@ -1,8 +1,12 @@
 [user]
     name = Bryce Thompson
-    email = 9068303+thompsonbryce@users.noreply.github.com
+    email = 9068303+thombrj@users.noreply.github.com
 [core]
     editor = vim
+[advice]
+    addEmptyPathspec = false
+    pushNonFastForward = false
+    statusHints = false
 [credential "helperselector"]
     selected = cache
 [alias]
@@ -36,3 +40,5 @@
 	tool = vimdiff
 [mergetool]
 	keepBackup = false
+[url "git@github.com:"]
+    insteadOf = "gh:"
