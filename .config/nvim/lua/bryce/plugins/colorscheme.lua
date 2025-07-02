@@ -1,5 +1,8 @@
 return {
   {
+    "catppuccin/nvim"
+  },
+  {
     "rebelot/kanagawa.nvim",
     priority = 1000,
     config = function()
