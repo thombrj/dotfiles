@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "folke/snacks.nvim",
   opts = {
     explorer = {
