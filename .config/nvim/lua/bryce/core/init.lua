@@ -1,5 +1,6 @@
 require('bryce.core.keymaps')
 require('bryce.core.options')
+require('bryce.core.terminal')
 
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
