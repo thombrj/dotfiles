@@ -1,4 +1,5 @@
 return {
+  {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
   dependencies = {
@@ -48,4 +49,8 @@ return {
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in" })
     keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
   end
+  },
+  {
+    "ibhagwan/fzf-lua"
+  }
 }
