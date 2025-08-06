@@ -1,7 +1,7 @@
 return {
   {
-    enabled = false,
     "nvim-tree/nvim-tree.lua",
+    enabled = false,
     config = function()
       require("nvim-tree").setup({
         sort = {
@@ -10,55 +10,52 @@ return {
         view = {
           width = 30
         },
-
         filters = {
           dotfiles = true
-        },
-
-        update_focused_file = {
-          enable = true
-        },
-
-        renderer = {
-          symlink_destination = false,
         }
       })
-
       -- settings for nvim tree
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
       vim.opt.termguicolors = true
-
       vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
-
-      --    function toggle_nvimtree()
-      --      if vim.fn.bufname():match 'NvimTree_' then
-      --        vim.cmd.wincmd 'p'
-      --      else
-      --        vim.cmd('NvimTreeFindFile')
-      --      end
-      --    end
-      --
-      --    vim.keymap.set("n", "<leader><space>", ":lua toggle_nvimtree()<CR>", { desc = "Toggle nvim tree focus" })
+      vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
+      vim.keymap.set('n', '<leader>ft', function()
+        if vim.fn.bufname():match 'NvimTree_' then
+          vim.cmd.wincmd 'p'
+        else
+          nvimtree.find_file(true)
+        end
+      end, { desc = 'nvim-tree: toggle' })
     end
   },
   {
-    {
-      "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-        "MunifTanjim/nui.nvim",
-      },
-      lazy = false,
-      ---@module "neo-tree"
-      ---@type neotree.Config?
-      opts = {
-        follow_current_file = {
-          enabled = true
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    lazy = false,
+    config = function()
+      require("neo-tree").setup({
+        filesystem = {
+          filtered_items = {
+            visible = true,
+            show_hidden_count = true,
+            hide_doftifles = false,
+            hide_gitignored = false
+
+          },
+          follow_current_file = {
+            enabled = true
+          }
         }
-      },
-    }
+      })
+      vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end
   }
 }
