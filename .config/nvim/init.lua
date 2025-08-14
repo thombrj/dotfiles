@@ -74,10 +74,10 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Navigate to bottom window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Navigate to top window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Navigate to right window" })
 
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down"})
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up"})
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up"})
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down"})
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
@@ -85,7 +85,20 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 vim.keymap.set("n", "<leader>rc", ":e ~/.config/nivm/init.lua<CR>", { desc = "Edit nvim config" })
 
 vim.keymap.set("n", "<leader>l", ":Lazy<CR>", { desc = "Open Lazy" })
-vim.keymap.set("n", "<A-S-f>", "<CMD>lua vim.lsp.buf.format()<CR>", { desc = "Format the current buffer with lsp" } )
+vim.keymap.set("n", "<A-S-f>", "<CMD>lua vim.lsp.buf.format()<CR>", { desc = "Format the current buffer with lsp" })
+
+-- Set working directory to current dir for nvim if path is not provided on start
+local function change_dir_from_argv()
+  local argv = vim.fn.argv()
+  if #argv > 0 then
+    local path = argv[1]
+    local is_dir = vim.fn.isdirectory(path) == 1
+
+    if is_dir then
+      vim.cmd('cd ' .. path)
+    end
+  end
+end
 
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
@@ -126,7 +139,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
-vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar", "*.cs"})
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar", "*.cs" })
 
 vim.opt.diffopt:append("linematch:60")
 
