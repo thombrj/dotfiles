@@ -10,32 +10,24 @@ dnf copr enable atim/lazygit -y
 echo "Installing packages from package manager"
 dnf install -y \
     blueman \
-    neovim \
-    git \
-    tmux \
-    gcc-c++ \
-    gnome-shell-extension-pop-shell \
-    keepassxc \
-    steam \
-    rclone \
-    nitrogen \
     dotnet-sdk-8.0 \
-    htop \
-    gimp \
-    neofetch \
-    lazygit \
-    fontawesome-fonts \
     flatpak \
-    nodejs \
-    libreoffice.x86_64 \
-    tmux \
+    fontawesome-fonts \
     gcc-c++ \
-    gnome-shell-extension-pop-shell \
+    gimp \
+    git \
+    htop \
     keepassxc \
-    steam \
+    lazygit \
+    libreoffice.x86_64 \
+    neofetch \
+    neovim \
+    nitrogen \
+    nodejs \
     rclone \
+    steam \
     stow \
-
+    tmux \
 
 echo "installing flatpaks"
 flatpak install -y com.discordapp.Discord
