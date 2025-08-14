@@ -6,46 +6,61 @@ palette:
   light-blue: "#8bd5ca"
   red: "#ed8796"
 blocks:
-- type: prompt
-  alignment: left
-  newline: true
-  segments:
-  - template: "{{ .Path }} "
-    foreground: p:blue
-    type: path
-    style: plain
-  - properties:
-      branch_icon: ""
-      cache_duration: none
-      fetch_status: true
-    template: "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus}}{{ end }}"
-    foreground: p:red
-    type: git
-    style: plain
-  - properties:
-      branch_icon: ""
-      cache_duration: none
-      fetch_status: true
-    template: "{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}"
-    foreground: p:red
-    type: git
-    style: plain
-  - properties:
-      fetch_status: true
-    template: "{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}"
-    foreground: p:green
-    type: git
-    style: plain
-  - properties:
-      cache_duration: none
-    template: " ✗"
-    foreground: "#BF616A"
-    type: status
-    style: plain
-  - properties:
-      cache_duration: none
-    template: "\n➜  "
-    foreground: p:green
-    type: text
-    style: plain
+  - type: prompt
+    alignment: left
+    segments:
+      - template: "→ "
+        foreground: p:green
+        type: text
+        style: plain
+      - template: "{{ .Path }} "
+        foreground: p:blue
+        type: path
+        style: plain
+      - template: "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus}} {{ end }}"
+        properties:
+          branch_icon: ""
+          cache_duration: none
+          fetch_status: true
+        foreground: p:red
+        type: git
+        style: plain
+      - template: "{{ if or (.Working.Changed) (.Staging.Changed)}}[{{ end}}"
+        properties:
+          branch_icon: ""
+          cache_duration: none
+          fetch_status: true
+        foreground: p:blue
+        type: git
+        style: plain
+      - template: "{{ if .Working.Changed }}\uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} | {{ end }}"
+        properties:
+          branch_icon: ""
+          cache_duration: none
+          fetch_status: true
+        foreground: p:red
+        type: git
+        style: plain
+      - template: "{{ if .Staging.Changed }}\uf046 {{ .Staging.String }}{{ end }}"
+        properties:
+          fetch_status: true
+        foreground: p:green
+        type: git
+        style: plain
+      - template: "{{ if or (.Working.Changed) (.Staging.Changed)}}] {{ end}}"
+        properties:
+          branch_icon: ""
+          cache_duration: none
+          fetch_status: true
+        foreground: p:blue
+        type: git
+        style: plain
+  - alignment: right
+    segments:
+      - properties:
+          cache_duration: none
+        template: " ✗"
+        foreground: "#BF616A"
+        type: status
+        style: plain
 version: 3
