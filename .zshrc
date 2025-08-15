@@ -1,21 +1,16 @@
 eval `keychain --eval --quiet`
 
+# Custom host .zshrc files
 if [ -f "$(hostname).zshrc" ]; then
     source "$(hostname).zshrc"
 fi
 
-####################
-# zinit
-
-# Set the directory we want to store zinit and plugins
+# zinit (zsh extensions)
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
 source "${ZINIT_HOME}/zinit.zsh"
 
 zinit light zsh-users/zsh-syntax-highlighting
@@ -25,13 +20,7 @@ zinit light zsh-users/zsh-autosuggestions
 # Load completions
 autoload -U compinit && compinit
 
-#autoload -Uz vcs_info
-#precmd() { vcs_info }
-#
-#zstyle ':vcs_info:git:*' formats '%b '
-#
-#setopt PROMPT_SUBST
-#PROMPT='%F{green}%n%f %F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
+# Key bindings
 bindkey -s ^f "~/dotfiles/scripts/tmux-sessionizer\n"
 bindkey '^H' backward-kill-word
 bindkey "^[[3~" delete-char
@@ -50,13 +39,14 @@ alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alG'
 alias ls='ls --color'
-alias azuritelocal='~/dotfiles/scripts/azurite.sh'
+alias azuritedev='~/dotfiles/scripts/azurite.sh'
 alias voteapi="tmux new-session -s voteapi -c ~/dev/VoteAppSwa/src/Api 'func host start'"
 alias voteapp="tmuxifier load-session voteapp"
 alias zshrc="nvim ~/.zshrc"
 alias lg="lazygit"
 alias ..="cd .."
 alias daprstartup="podman start \$(podman container list -a -f \"name=dapr\" -q)"
+
 killp() {
     local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
     if [[ "$pid" != "" ]]; then
@@ -89,11 +79,15 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # Path modifications
-export PATH="$PATH:/opt/azure-functions-cli"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.dotnet/tools"
-export PATH="$PATH:/snap/bin"
-export PATH="$PATH:$HOME/.tmuxifier/bin"
+appendPath() {
+  export PATH="$PATH:$1"
+}
+
+appendPath "/opt/azure-functions-cli"
+appendPath "$HOME/.local/bin"
+appendPath "$HOME/.dotnet/tools"
+appendPath "/snap/bin"
+appendPath "$HOME/.tmuxifier/bin"
 
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/my-prompt.yaml)"
 eval "$(fzf --zsh)"
