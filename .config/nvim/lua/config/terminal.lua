@@ -1,4 +1,3 @@
-
 -- Terminal
 
 local terminal_state = {
@@ -92,5 +91,4 @@ vim.keymap.set("t", "<Esc>", function()
     vim.api.nvim_win_close(terminal_state.win, false)
     terminal_state.is_open = false
   end
-end, { noremap = true, silent =ttrue, desc = "Close floating termianl mode" })
-
+end, { noremap = true, silent = ttrue, desc = "Close floating termianl mode" })

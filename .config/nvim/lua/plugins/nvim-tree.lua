@@ -46,14 +46,16 @@ return {
             show_hidden_count = true,
             hide_doftifles = false,
             hide_gitignored = false
-
           },
           follow_current_file = {
             enabled = true
           }
+        },
+        window = {
+          auto_open = false
         }
       })
-      vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
+      vim.keymap.set("n", "<leader>ee", ":Neotree toggle<CR>")
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
     end
