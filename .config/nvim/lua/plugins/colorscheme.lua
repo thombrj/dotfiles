@@ -12,4 +12,11 @@ return {
   {
     "olimorris/onedarkpro.nvim",
   },
+  {
+    "projekt0n/github-nvim-theme"
+  },
+  {
+    "notken12/base46-colors",
+    lazy = false
+  }
 }

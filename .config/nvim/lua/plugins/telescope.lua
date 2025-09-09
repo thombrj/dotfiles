@@ -1,7 +1,6 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    enabled = false,
     branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -42,28 +41,13 @@ return {
       })
 
       telescope.load_extension("fzf")
-      local keymap = vim.keymap
+      -- local keymap = vim.keymap
 
-      keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-      keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-      keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-      keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in" })
-      keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
+      -- keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+      -- keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
+      -- keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+      -- keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in" })
+      -- keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
     end
   },
-  {
-    "ibhagwan/fzf-lua",
-    lazy = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require('fzf-lua').setup({
-        files = {
-          follow = true
-        }
-      })
-      vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", { desc = "find files with fzf" })
-      vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua grep<CR>", { desc = "find files with fzf" })
-      vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", { desc = "find files with fzf" })
-    end
-  }
 }

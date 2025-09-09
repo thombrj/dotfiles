@@ -4,7 +4,11 @@ return {
     dependencies = { "rafamadriz/friendly-snippets" },
     version = '1.*',
     opts = {
-      keymap = { preset = "default" },
+      keymap = {
+        preset = "default",
+        ["<Tab>"] = { 'select_next', 'snippet_forward', 'fallback' },
+        ["<S-Tab>"] = { 'select_prev', 'snippet_backward', 'fallback' },
+      },
       appearance = {
         nerd_font_variant = "mono"
       },
@@ -58,7 +62,9 @@ return {
         completion = { completeopt = 'menu,menuone,noinsert' },
         mapping = cmp.mapping.preset.insert {
           ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<Tab>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-y>'] = cmp.mapping.confirm { select = true },
@@ -87,4 +93,3 @@ return {
     end,
   }
 }
-

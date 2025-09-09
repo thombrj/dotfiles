@@ -1,8 +1,10 @@
 eval `keychain --eval --quiet`
 
 # Custom host .zshrc files
-if [ -f "$(hostname).zshrc" ]; then
-    source "$(hostname).zshrc"
+if [ -f "$HOME/$(hostname).zshrc" ]; then
+    source "$HOME/$(hostname).zshrc"
+else
+  echo "no host zshrc found"
 fi
 
 # zinit (zsh extensions)
@@ -46,6 +48,7 @@ alias zshrc="nvim ~/.zshrc"
 alias lg="lazygit"
 alias ..="cd .."
 alias daprstartup="podman start \$(podman container list -a -f \"name=dapr\" -q)"
+alias tf=terraform
 
 killp() {
     local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
