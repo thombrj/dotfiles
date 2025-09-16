@@ -1,10 +1,9 @@
+
 eval `keychain --eval --quiet`
 
 # Custom host .zshrc files
 if [ -f "$HOME/$(hostname).zshrc" ]; then
     source "$HOME/$(hostname).zshrc"
-else
-  echo "no host zshrc found"
 fi
 
 # zinit (zsh extensions)
@@ -33,6 +32,7 @@ zle -N killp{,}
 bindkey "^[Q" killp
 bindkey '^[[Z' autosuggest-accept
 
+# Alias'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/.git --work-tree=$HOME/dotfiles'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -50,15 +50,12 @@ alias ..="cd .."
 alias daprstartup="podman start \$(podman container list -a -f \"name=dapr\" -q)"
 alias tf=terraform
 
+# Functions
 killp() {
     local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
     if [[ "$pid" != "" ]]; then
         echo $pid | xargs sudo kill -${1:-9}
     fi
-}
-
-sshlogin() {
-  keychain ~/.ssh/id_ed25519
 }
 
 # History
