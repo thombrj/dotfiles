@@ -9,6 +9,12 @@ blocks:
   - type: prompt
     alignment: left
     segments:
+      - properties:
+          cache_duration: none
+        template: "✗ "
+        foreground: "#BF616A"
+        type: status
+        style: plain
       - template: "→ "
         foreground: p:green
         type: text
@@ -54,13 +60,5 @@ blocks:
           fetch_status: true
         foreground: p:blue
         type: git
-        style: plain
-  - alignment: right
-    segments:
-      - properties:
-          cache_duration: none
-        template: " ✗"
-        foreground: "#BF616A"
-        type: status
         style: plain
 version: 3

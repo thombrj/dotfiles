@@ -53,11 +53,10 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
-vim.opt.ttimeoutlen = 0
 vim.opt.autoread = true
 vim.opt.autowrite = false
 vim.opt.clipboard:append("unnamedplus")
-
+--
 vim.opt.hidden = true
 vim.opt.errorbells = false
 vim.opt.backspace = "indent,eol,start"

@@ -18,5 +18,8 @@ return {
   {
     "notken12/base46-colors",
     lazy = false
+  },
+  {
+    "rose-pine/neovim"
   }
 }
