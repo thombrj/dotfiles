@@ -1,10 +1,11 @@
 return {
   "ibhagwan/fzf-lua",
   lazy = false,
+  enabled = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require('fzf-lua').setup({
-      keymap     = {
+      keymap = {
         builtin = {
           true,
           ["<C-d>"] = "preview-page-down",
@@ -17,7 +18,7 @@ return {
           ["ctrl-q"] = "select-all+accept",
         },
       },
-      files = {
+      files  = {
         follow = true
       }
     })
