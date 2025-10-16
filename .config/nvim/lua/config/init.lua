@@ -10,6 +10,6 @@ require('config.options')
 require('config.global')
 require('config.autocmds')
 require('config.keymaps')
---require('config.terminal')
 
 require("lazy").setup("plugins")
+require('config.lsp')

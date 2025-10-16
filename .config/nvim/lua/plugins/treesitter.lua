@@ -5,6 +5,7 @@ return {
     build = ":TSUpdate",
     dependencies = {
       "windwp/nvim-ts-autotag",
+      "nvim-treesitter/nvim-treesitter-textobjects"
     },
     config = function()
       local treesitter = require("nvim-treesitter.configs")
@@ -19,6 +20,7 @@ return {
           "lua",
           "yaml"
         },
+        auto_install = false,
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -50,7 +52,4 @@ return {
       })
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects"
-  }
 }

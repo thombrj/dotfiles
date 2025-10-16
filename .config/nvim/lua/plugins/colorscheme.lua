@@ -5,21 +5,14 @@ return {
   {
     "rebelot/kanagawa.nvim",
     priority = 1000,
-    config = function()
-      vim.cmd("colorscheme kanagawa")
-    end
   },
   {
     "olimorris/onedarkpro.nvim",
   },
   {
-    "projekt0n/github-nvim-theme"
+    "rose-pine/neovim",
   },
   {
-    "notken12/base46-colors",
-    lazy = false
-  },
-  {
-    "rose-pine/neovim"
+    "vague2k/vague.nvim"
   }
 }

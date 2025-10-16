@@ -1,7 +1,7 @@
 return {
   {
     "nvim-tree/nvim-tree.lua",
-    enabled = true,
+    enabled = false,
     config = function()
       require("nvim-tree").setup({
         sort = {
@@ -25,13 +25,6 @@ return {
       vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>")
       vim.keymap.set("n", "<A-n>", ":NvimTreeToggle<CR>")
       vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
-      vim.keymap.set('n', '<leader>ft', function()
-        if vim.fn.bufname():match 'NvimTree_' then
-          vim.cmd.wincmd 'p'
-        else
-          nvimtree.find_file(true)
-        end
-      end, { desc = 'nvim-tree: toggle' })
     end
   },
 }

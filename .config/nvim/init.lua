@@ -1,3 +1,3 @@
-require("config.lazy")
+require("config")
 
-vim.cmd.colorscheme("unokai")
+vim.cmd("colorscheme kanagawa")

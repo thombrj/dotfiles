@@ -5,7 +5,6 @@ local keymap = vim.keymap
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- Editing keybinds
-
 keymap.set("n", "<leader><C-a>", "<cmd>%+y<CR>", { desc = "Select all" })
 
 --
@@ -16,7 +15,7 @@ keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
-keymap.set("n", "<leader>sh", ":hsplit<CR>", { desc = "Split window horizontally" })
+keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current splits" })
 

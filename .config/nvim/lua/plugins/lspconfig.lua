@@ -5,18 +5,24 @@ return {
       require("mason").setup()
     end
   },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    dependencies = { "mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        -- automatic_enable = false
-      })
-    end
-  },
+  -- {
+  --   "mason-org/mason-lspconfig.nvim",
+  --   dependencies = { "mason.nvim" },
+  --   config = function()
+  --     require("mason-lspconfig").setup({
+  --       -- automatic_enable = false
+  --     })
+  --   end
+  -- },
   {
     "neovim/nvim-lspconfig",
     config = function()
+      -- setups
+      vim.lsp.config("lua_ls", {})
+      vim.lsp.enable("lua_ls")
+      vim.lsp.enable("clangd")
+      vim.lsp.enable("jsonls")
+      -- On lsp attach, configure stuff
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
@@ -39,9 +45,10 @@ return {
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-
+          map('<leader>ca', require('fzf-lua').lsp_code_actions, 'Code actions', { 'n', 'v' })
           client.server_capabilities.semanticTokensProvider = nil
 
+          -- Highlighting current cursor references
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -65,14 +72,15 @@ return {
             })
           end
 
-          local inlayHintSupported = client and
-              client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
-          if inlayHintSupported then
+          -- Toggle inlay hints
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
+          then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
 
+          -- Format on save
           if client.supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = event.buf,

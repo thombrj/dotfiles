@@ -21,6 +21,7 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 
 -- Searching
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
@@ -70,7 +71,8 @@ vim.opt.virtualedit = "block"
 vim.opt.inccommand = "split"
 
 vim.diagnostic.config({
-  virtual_text = true
+  virtual_text = true,
+  signs = true,
 })
 
 -- Wildcard menu
