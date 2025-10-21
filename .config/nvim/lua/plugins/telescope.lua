@@ -2,11 +2,10 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    enabled = false,
+    enabled = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-tree/nvim-web-devicons",
     },
     config = function()
       local telescope = require("telescope")
@@ -20,6 +19,9 @@ return {
             ".git/",
             ".nuget/"
           },
+          layout_config = {
+            prompt_position = 'top'
+          },
           path_display = { "truncate = 3" },
           mappings = {
             i = {
@@ -31,9 +33,6 @@ return {
         },
         pickers = {
           find_files = {
-            layout_config = {
-              prompt_position = 'top'
-            },
             sorting_strategy = 'ascending',
             hidden = true,
             follow = true
@@ -41,7 +40,8 @@ return {
         },
         colorscheme = {
           enable_preview = true
-        }
+        },
+        preview = { treesitter = false }
       })
 
       telescope.load_extension("fzf")

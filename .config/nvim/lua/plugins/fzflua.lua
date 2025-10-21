@@ -24,6 +24,6 @@ return {
     })
     vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", { desc = "find files with fzf" })
     vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", { desc = "find files with fzf" })
-    vim.keymap.set("n", "<leader>b", "<cmd>FzfLua buffers<CR>", { desc = "find files with fzf" })
+    vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", { desc = "find files with fzf" })
   end
 }
