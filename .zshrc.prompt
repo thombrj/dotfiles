@@ -1,0 +1,36 @@
+setopt PROMPT_SUBST
+local PROMPT_START=$'\e]133;A\e\\'
+local PROMPT_END=$'\e]133;\B\e\\'
+
+local PROMPT_CHARACTERS=$'\u276f'
+
+# %1~ = show 1 trailing component of working directory, or "~" if is is $HOME
+local CURRENT_DIRECTORY="%F{blue}%~"
+
+# %(1j.*.) = bold yellow "*" if the number of jobs is at least 1
+local JOB_STATUS_INDICATOR="%F{yellow}%B%(1j.*.)%b%f"
+
+# %(?..!) = bold yellow "!" if the exit status of the last command was not 0
+local EXIT_STATUS_INDICATOR="%F{yellow}%B%(?..!)%b%f"
+
+local PROMPT_SEPARATOR=" "
+
+# %(!.%F{yellow}%n%f.) = if root (!) show yellow $USER, otherwise nothing.
+# local USER_INDICATOR="%B%(!.%F{yellow}%n%f.)%b"
+
+local GIT_BRANCH='$(git branch 2> /dev/null | grep -e ^\*)'
+
+# $(!.%F{yellow}.%F{red})$(...) = use bold yellow for root, otherwise bold red
+local FINAL_PROMPT_MARKER="%B%(!.%F{yellow}.%F{red})${PROMPT_CHARACTERS}%f%b"
+
+PS1="%{${PROMPT_START}%}"
+PS1+="${CURRENT_DIRECTORY}"
+PS1+="${JOB_STATUS_INDICATOR}"
+PS1+="${EXIT_STATUS_INDICATOR}"
+PS1+="${PROMPT_SEPARATOR}"
+PS1+="${USER_INDICATOR}"
+PS1+="${GIT_BRANCH}"
+PS1+="${FINAL_PROMPT_MARKER}"
+PS1+="%{${PROMPT_END}%}"
+PS1+="${PROMPT_SEPARATOR}"
+export PS1

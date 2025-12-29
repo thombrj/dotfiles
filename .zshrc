@@ -1,10 +1,4 @@
-
-eval `keychain --eval --quiet`
-
-# Custom host .zshrc files
-if [ -f "$HOME/$(hostname).zshrc" ]; then
-    source "$HOME/$(hostname).zshrc"
-fi
+eval `keychain --eval --quiet` &> /dev/null
 
 # zinit (zsh extensions)
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -28,7 +22,6 @@ bindkey "^[[3~" delete-char
 bindkey "5~" kill-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-zle -N killp{,}
 bindkey "^[Q" killp
 bindkey '^[[Z' autosuggest-accept
 
@@ -76,7 +69,7 @@ bindkey '^n' history-search-forward
 
 ## Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
 
 # Path modifications
 appendPath() {
@@ -87,7 +80,8 @@ appendPath "/opt/azure-functions-cli"
 appendPath "$HOME/.local/bin"
 appendPath "$HOME/.dotnet/tools"
 appendPath "/snap/bin"
-appendPath "$HOME/.tmuxifier/bin"
+appendPath "$HOME/roslyn/linux-x64/"
 
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/my-prompt.yaml)"
+source ~/.zshrc.prompt
+
 eval "$(fzf --zsh)"

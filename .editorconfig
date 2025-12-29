@@ -276,3 +276,6 @@ indent_size = 2
 
 [*.nix]
 indent_size = 2
+
+[*.ps*]
+indent_size = 4

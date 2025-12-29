@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -ex
+DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+sudo apt-get update
+sudo apt-get upgrade -y
+
+categories="system hw dev tool app font $(hostname)"
+for c in $categories; do
+    for x in ${c}-*; do
+          source $x
+    done
+done
