@@ -5,18 +5,13 @@ local map = vim.keymap.set
 map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 map("n", "<leader>ee", ":Ex<CR>")
-map("n", "<A-n>", ":Ex<CR>")
--- Editing keybinds
+map("n", "<A-n>", ":Explore<CR>")
+
 map("n", "<leader><C-a>", "maggVG", { desc = "Select all, mark register a" })
 map("n", "<leader>yy", "<cmd>%+y<CR>", { desc = "Yank all" })
-map("n", "<leader>dd", "<cmd>%+dd<CR>", { desc = "Delete all" })
-
-map("n", "<leader>s", ":e #<CR>", { desc = "Previous buffer" })
+map("n", "<leader>D", "<cmd>%+d<CR>", { desc = "Delete all" })
 
 map("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
-
-map("n", "<leader>+", "<C-a>", { desc = "Increment number" })
-map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 map("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
@@ -28,9 +23,10 @@ map("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
 
 map("n", "<leader>w", "<cmd>write<CR>", { desc = "Save" })
+map("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit" })
+
+map("n", "<leader>s", ":e #<CR>", { desc = "Toggle last two buffers" })
 map("n", "<leader><TAB>", "<C-w>w", { desc = "Tab to new window" })
-map({ 'n', 'i' }, "<F1>", "<ESC>")
-map("n", "q:", "<ESC>")
 
 map("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 map("n", "n", "nzzzv", { desc = "Next search result (centered)" })
@@ -45,9 +41,13 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
-map("n", "<leader>rc", ":e ~/.config/nivm/init.lua<CR>", { desc = "Edit nvim config" })
-
 map("n", "<leader>l", ":Lazy<CR>", { desc = "Open Lazy" })
-map({ "n", "v" }, "<leader>d", '"_d"', { desc = "Delete without yanking" })
 
-map("n", "<A-S-f>", "<CMD>lua vim.lsp.buf.format()<CR>", { desc = "Format the current buffer with lsp" })
+map("n", "<leader>d", '"_dd"', { desc = "Delete without yanking" })
+map("v", "<leader>d", '"_d"', { desc = "Delete without yanking" })
+
+map({ "n", "i" }, "<A-S-f>", "<CMD>lua vim.lsp.buf.format()<CR>", { desc = "Format the current buffer with lsp" })
+
+-- unbind keys
+map({ "n", "i" }, "<F1>", "<ESC>")
+map({ "n", "v" }, "q:", "<ESC>")

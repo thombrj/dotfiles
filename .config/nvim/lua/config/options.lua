@@ -1,5 +1,5 @@
 -- Basic settings
-vim.opt.number = true -- 1
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.wrap = false
@@ -39,11 +39,6 @@ vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")
 vim.opt.clipboard:append("unnamedplus")
-
--- vi.diagnostic.config({
---   virtual_text = true,
---   signs = true,
--- })
 
 local undodir = vim.fn.expand("~/.vim/undodir")
 if vim.fn.isdirectory(undodir) == 0 then

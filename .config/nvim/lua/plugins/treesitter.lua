@@ -50,6 +50,18 @@ return {
           }
         }
       })
+
+      local treesitter_parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+      treesitter_parser_config.powersehll = {
+        install_info = {
+          url = "~/.local/share/nvim/custom/tree-sitter-powershell/",
+          files = { "src/parser.c", "src/scanner.c" },
+          branch = "main",
+          generate_requires_npm = false,
+          requires_generate_from_grammer = false,
+        },
+        filetype = "ps1"
+      }
     end,
   },
 }

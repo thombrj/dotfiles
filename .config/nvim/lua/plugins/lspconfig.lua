@@ -17,11 +17,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- setups
-      vim.lsp.config("lua_ls", {})
-      vim.lsp.enable("lua_ls")
-      vim.lsp.enable("clangd")
-      vim.lsp.enable("jsonls")
       -- On lsp attach, configure stuff
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
