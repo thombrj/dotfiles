@@ -76,14 +76,14 @@ return {
           end
 
           -- Format on save
-          if client.supports_method('textDocument/formatting') then
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = event.buf,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = event.buf, id = client.id })
-              end,
-            })
-          end
+          -- if client.supports_method('textDocument/formatting') then
+          --   vim.api.nvim_create_autocmd('BufWritePre', {
+          --     buffer = event.buf,
+          --     callback = function()
+          --       vim.lsp.buf.format({ bufnr = event.buf, id = client.id })
+          --     end,
+          --   })
+          -- end
         end,
       })
     end

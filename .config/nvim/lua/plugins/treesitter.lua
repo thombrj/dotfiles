@@ -1,15 +1,17 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "nvim-treesitter/nvim-treesitter-textobjects"
     },
+  },
+  {
+    "MeanderingProgrammer/treesitter-modules.nvim",
     config = function()
-      local treesitter = require("nvim-treesitter.configs")
-      treesitter.setup({
+      require("treesitter-modules").setup({
         highlight = { enable = true },
         indent = { enable = true },
         autotag = { enable = true },
@@ -32,36 +34,55 @@ return {
         },
 
         textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-            },
-            selection_modes = {
-              ['@parameter.outer'] = 'v',
-              ['@function.outer'] = 'V',
-              ['@class.outer'] = '<c-v>',
-            }
-          }
+        }
+      })
+      --
+      -- local treesitter_parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+      -- treesitter_parser_config.powersehll = {
+      --   install_info = {
+      --     url = "~/.local/share/nvim/custom/tree-sitter-powershell/",
+      --     files = { "src/parser.c", "src/scanner.c" },
+      --     branch = "main",
+      --     generate_requires_npm = false,
+      --     requires_generate_from_grammer = false,
+      --   },
+      --   filetype = "ps1"
+      -- }
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    config = function()
+      require("nvim-treesitter-textobjects").setup({
+        select = {
+          enable = true,
+          lookahead = true,
+          selection_modes = {
+            ['@parameter.outer'] = 'v',
+            ['@function.outer'] = 'V',
+            ['@class.outer'] = '<c-v'
+          },
+          include_surrounding_whitespace = true,
         }
       })
 
-      local treesitter_parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-      treesitter_parser_config.powersehll = {
-        install_info = {
-          url = "~/.local/share/nvim/custom/tree-sitter-powershell/",
-          files = { "src/parser.c", "src/scanner.c" },
-          branch = "main",
-          generate_requires_npm = false,
-          requires_generate_from_grammer = false,
-        },
-        filetype = "ps1"
-      }
-    end,
-  },
+      local select = require("nvim-treesitter-textobjects.select").select_textobject
+      vim.keymap.set({ "x", "o" }, "af", function()
+        select("@function.outer", "textobjects")
+      end)
+      vim.keymap.set({ "x", "o" }, "if", function()
+        select("@function.inner", "textobjects")
+      end)
+      vim.keymap.set({ "x", "o" }, "ac", function()
+        select("@class.outer", "textobjects")
+      end)
+      vim.keymap.set({ "x", "o" }, "ic", function()
+        select("@class.inner", "textobjects")
+      end)
+      vim.keymap.set({ "x", "o" }, "as", function()
+        select("@local.scope", "locals")
+      end)
+    end
+  }
 }

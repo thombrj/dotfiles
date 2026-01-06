@@ -9,6 +9,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.mouse = "a"
 vim.opt.virtualedit = "block"
+vim.opt.autoread = true
 
 -- Indentation
 vim.opt.tabstop = 2

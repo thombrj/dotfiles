@@ -1,12 +1,5 @@
 return {
-  name = "lua-language-server",
-  cmd = { "lua-language-server" },
-  root_dir = vim.fs.dirname(vim.fs.find({ '.git', '.vim', 'nvim' }, { upward = true })[1]),
-  settings = {
-    Lua = {
-      diagnostics = {
-        'vim'
-      }
-    }
-  }
+  cmd = { 'terraform-ls', 'serve' },
+  filetypes = { 'terraform', 'terraform-vars' },
+  root_markers = { '.terraform', '.git' },
 }
