@@ -18,7 +18,7 @@ local PROMPT_SEPARATOR=" "
 # %(!.%F{yellow}%n%f.) = if root (!) show yellow $USER, otherwise nothing.
 # local USER_INDICATOR="%B%(!.%F{yellow}%n%f.)%b"
 
-local GIT_BRANCH='$(git branch 2> /dev/null | grep -e ^\*)'
+local GIT_BRANCH='$(branch=$(git branch 2> /dev/null | grep -e ^\* | sed -E "s/\* //g" );if [[ -n $branch ]]; then echo "%F{red}[$branch]%f";fi)'
 
 # $(!.%F{yellow}.%F{red})$(...) = use bold yellow for root, otherwise bold red
 local FINAL_PROMPT_MARKER="%B%(!.%F{yellow}.%F{red})${PROMPT_CHARACTERS}%f%b"

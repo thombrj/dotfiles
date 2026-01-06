@@ -83,5 +83,6 @@ appendPath "/snap/bin"
 appendPath "$HOME/roslyn/linux-x64/"
 
 source ~/.zshrc.prompt
+# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/my-prompt.yaml)"
 
 eval "$(fzf --zsh)"
