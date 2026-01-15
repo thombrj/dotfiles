@@ -22,11 +22,9 @@ bindkey "^[[3~" delete-char
 bindkey "5~" kill-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey "^[Q" killp
 bindkey '^[[Z' autosuggest-accept
 
 # Alias'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/.git --work-tree=$HOME/dotfiles'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
@@ -35,8 +33,6 @@ alias la='ls -A'
 alias ll='ls -alG'
 alias ls='ls --color'
 alias azuritedev='~/dotfiles/scripts/azurite.sh'
-alias voteapi="tmux new-session -s voteapi -c ~/dev/VoteAppSwa/src/Api 'func host start'"
-alias voteapp="tmuxifier load-session voteapp"
 alias zshrc="nvim ~/.zshrc"
 alias lg="lazygit"
 alias ..="cd .."
@@ -46,7 +42,7 @@ alias tf=terraform
 # Functions
 killp() {
     local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
-    if [[ "$pid" != "" ]]; then
+    if [ "$pid" != "" ]; then
         echo $pid | xargs sudo kill -${1:-9}
     fi
 }
@@ -71,18 +67,7 @@ bindkey '^n' history-search-forward
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
 
-# Path modifications
-appendPath() {
-  export PATH="$PATH:$1"
-}
-
-appendPath "/opt/azure-functions-cli"
-appendPath "$HOME/.local/bin"
-appendPath "$HOME/.dotnet/tools"
-appendPath "/snap/bin"
-appendPath "$HOME/roslyn/linux-x64/"
-
 source ~/.zshrc.prompt
-# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/my-prompt.yaml)"
 
 eval "$(fzf --zsh)"
+
