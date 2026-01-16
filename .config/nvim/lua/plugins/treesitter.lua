@@ -2,16 +2,12 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
-    event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
-    dependencies = {
-      "windwp/nvim-ts-autotag",
-    },
   },
   {
     "MeanderingProgrammer/treesitter-modules.nvim",
-    config = function()
-      require("treesitter-modules").setup({
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {
         highlight = { enable = true },
         indent = { enable = true },
         autotag = { enable = true },
@@ -22,7 +18,6 @@ return {
           "lua",
           "yaml"
         },
-        auto_install = false,
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -31,24 +26,8 @@ return {
             scope_incremental = false,
             node_decremental = "<bs>",
           }
-        },
-
-        textobjects = {
-        }
-      })
-      --
-      -- local treesitter_parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-      -- treesitter_parser_config.powersehll = {
-      --   install_info = {
-      --     url = "~/.local/share/nvim/custom/tree-sitter-powershell/",
-      --     files = { "src/parser.c", "src/scanner.c" },
-      --     branch = "main",
-      --     generate_requires_npm = false,
-      --     requires_generate_from_grammer = false,
-      --   },
-      --   filetype = "ps1"
-      -- }
-    end
+      }
+    }
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
