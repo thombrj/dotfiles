@@ -4,26 +4,23 @@ local PROMPT_END=$'\e]133;\B\e\\'
 
 local PROMPT_CHARACTERS=$'\u276f'
 
-# %1~ = show 1 trailing component of working directory, or "~" if is is $HOME
-local CURRENT_DIRECTORY="%F{blue}%~"
+red=009
+green=010
+yellow=011
+blue=012
 
-# %(1j.*.) = bold yellow "*" if the number of jobs is at least 1
-local JOB_STATUS_INDICATOR="%F{yellow}%B%(1j.*.)%b%f"
-
-# %(?..!) = bold yellow "!" if the exit status of the last command was not 0
-local EXIT_STATUS_INDICATOR="%F{yellow}%B%(?..!)%b%f"
-
+local USER="%F{$green}%n@%m %f"
+local CURRENT_DIRECTORY="%F{$blue}%B%~%b%f"
+local JOB_STATUS_INDICATOR="%F{$yellow}%B%(1j.*.)%b%f"
+local EXIT_STATUS_INDICATOR="%F{$yellow}%B%(?..!)%b%f"
 local PROMPT_SEPARATOR=" "
 
-# %(!.%F{yellow}%n%f.) = if root (!) show yellow $USER, otherwise nothing.
-# local USER_INDICATOR="%B%(!.%F{yellow}%n%f.)%b"
+local GIT_BRANCH='$(branch=$(git branch 2> /dev/null | grep -e ^\* | sed -E "s/\* //g" );if [[ -n $branch ]]; then echo "%F{$red}[$branch]%f";fi)'
 
-local GIT_BRANCH='$(branch=$(git branch 2> /dev/null | grep -e ^\* | sed -E "s/\* //g" );if [[ -n $branch ]]; then echo "%F{red}[$branch]%f";fi)'
-
-# $(!.%F{yellow}.%F{red})$(...) = use bold yellow for root, otherwise bold red
-local FINAL_PROMPT_MARKER="%B%(!.%F{yellow}.%F{red})${PROMPT_CHARACTERS}%f%b"
+local FINAL_PROMPT_MARKER="%B%(!.%F{$yellow}.%F{$red})${PROMPT_CHARACTERS}%f%b"
 
 PS1="%{${PROMPT_START}%}"
+PS1+="${USER}"
 PS1+="${CURRENT_DIRECTORY}"
 PS1+="${JOB_STATUS_INDICATOR}"
 PS1+="${EXIT_STATUS_INDICATOR}"

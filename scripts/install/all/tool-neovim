@@ -1,21 +1,21 @@
 #!/bin/env bash
 
 downloadLocation="$HOME/Downloads"
-location="$HOME/.local/neovim"
+installLocation="$HOME/.local/bin/neovim"
+tag=stable
 
 if [ ! -d $downloadLocation ]; then
     mkdir $downloadLocation
 fi
 
-if [ -d $location ]; then
-    sudo rm -rf $location
+if [ -d $installLocation ]; then
+    echo "Neovim - install directory exists. Removing"
+    rm -rf $installLocation
 fi
 
-latest=$(curl -s -L -H 'Accept: application/json' https://github.com/neovim/neovim/releases/latest)
-tag=$(jq -r -n '$LATEST | .tag_name')
 
 wget "https://github.com/neovim/neovim/releases/download/$tag/nvim-linux-x86_64.tar.gz" -P $downloadLocation
 tar -xvzf $(downloadLocation)/nvim-linux-x86.tar.gz
 
-mv $(downloadLocation)/nvim-linux-x87 $location
+mv $downloadLocation/nvim-linux-x87 $installLocation
 rm $downloadLocation/nvim-linux-x86.tar.gz

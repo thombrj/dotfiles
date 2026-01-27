@@ -1,0 +1,12 @@
+#!/bin/env bash
+
+cert_location=$1
+cert_name=$(echo $cert_location | sed 's|.*/||; s|\.[^.]*$||')
+
+echo "cert_location=$cert_location"
+echo "cert_name=$cert_name"
+
+sudo apt-get install -y ca-certificates
+sudo openssl x509 -inform PEM -in "$cert_location" -out "/tmp/$cert_name.crt"
+sudo cp "/tmp/$cert_name.crt" /usr/local/share/ca-certificates
+sudo update-ca-certificates

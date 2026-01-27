@@ -16,7 +16,7 @@ zinit light zsh-users/zsh-autosuggestions
 autoload -U compinit && compinit
 
 # Key bindings
-bindkey -s ^f "~/dotfiles/scripts/tmux-sessionizer\n"
+bindkey -s ^f "~/dotfiles/scripts/tmux/tmux-sessionizer\n"
 bindkey '^H' backward-kill-word
 bindkey "^[[3~" delete-char
 bindkey "5~" kill-word
@@ -66,6 +66,8 @@ bindkey '^n' history-search-forward
 ## Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
 
 source ~/.zshrc.prompt
 
