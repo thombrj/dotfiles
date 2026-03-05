@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+sudo dnf install -y awk
+sudo dnf install -y keychain

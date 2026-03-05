@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+DOWNLOAD_LOCATION=~/tmp/azure_functions_cli
+INSTALL_LOCATION=~/.local/bin
+
+mkdir $DOWNLOAD_LOCATION
+
+wget https://github.com/Azure/azure-functions-core-tools/releases/download/4.6.0/Azure.Functions.Cli.linux-x64.4.6.0.zip

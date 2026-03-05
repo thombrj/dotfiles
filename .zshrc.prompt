@@ -1,7 +1,7 @@
 setopt PROMPT_SUBST
+
 local PROMPT_START=$'\e]133;A\e\\'
 local PROMPT_END=$'\e]133;\B\e\\'
-
 local PROMPT_CHARACTERS=$'\u276f'
 
 red=009
@@ -9,18 +9,16 @@ green=010
 yellow=011
 blue=012
 
-local USER="%F{$green}%n@%m %f"
+local CURRENT_USER="%F{$green}%n@%m %f"
 local CURRENT_DIRECTORY="%F{$blue}%B%~%b%f"
 local JOB_STATUS_INDICATOR="%F{$yellow}%B%(1j.*.)%b%f"
 local EXIT_STATUS_INDICATOR="%F{$yellow}%B%(?..!)%b%f"
 local PROMPT_SEPARATOR=" "
-
 local GIT_BRANCH='$(branch=$(git branch 2> /dev/null | grep -e ^\* | sed -E "s/\* //g" );if [[ -n $branch ]]; then echo "%F{$red}[$branch]%f";fi)'
-
 local FINAL_PROMPT_MARKER="%B%(!.%F{$yellow}.%F{$red})${PROMPT_CHARACTERS}%f%b"
 
 PS1="%{${PROMPT_START}%}"
-PS1+="${USER}"
+PS1+="${CURRENT_USER}"
 PS1+="${CURRENT_DIRECTORY}"
 PS1+="${JOB_STATUS_INDICATOR}"
 PS1+="${EXIT_STATUS_INDICATOR}"
