@@ -34,6 +34,8 @@ alias ll='ls -alG'
 alias ls='ls --color'
 alias azuritedev='~/dotfiles/scripts/azurite.sh'
 alias zshrc="nvim ~/.zshrc"
+alias vim="nvim"
+alias Vim="/usr/bin/vim"
 alias lg="lazygit"
 alias ..="cd .."
 alias daprstartup="podman start \$(podman container list -a -f \"name=dapr\" -q)"

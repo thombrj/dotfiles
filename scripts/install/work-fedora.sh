@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -e
+# sudo dnf copr enable -y dejan/lazygit
 
-rpms=(
+local rpms=(
     awk
     bat
     dotnet-sdk-8.0
@@ -14,17 +14,18 @@ rpms=(
     hostname
     jq
     keychain
+    lazygit
+    libsecret
+    libsecret-devel
     neovim
     podman
+    seahorse
     stow
     tmux
     zsh
 )
 
-sudo dnf install -y $rpms
-
-sudo dnf copr enable -y dejan/lazygit
-sudo dnf install -y lazygit
+sudo dnf install -y "${rpms[@]}"
 
 if ! copilot -v > /dev/null &> /dev/null; then
   echo "installing copilot cli.."
