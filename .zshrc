@@ -1,4 +1,6 @@
-eval `keychain --eval --quiet` &> /dev/null
+if command -v keychain > /dev/null 2>&1 ; then
+  eval `keychain --eval --quiet`
+fi
 
 # zinit (zsh extensions)
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -17,7 +19,7 @@ autoload -U compinit && compinit
 
 # Key bindings
 bindkey -s ^f "~/dotfiles/scripts/tmux/tmux-sessionizer\n"
-bindkey '^H' backward-kill-word
+# bindkey '^H' backward-kill-word
 bindkey "^[[3~" delete-char
 bindkey "5~" kill-word
 bindkey "^[[1;5C" forward-word
@@ -34,12 +36,14 @@ alias ll='ls -alG'
 alias ls='ls --color'
 alias azuritedev='~/dotfiles/scripts/azurite.sh'
 alias zshrc="nvim ~/.zshrc"
+alias nvimconf="vim ~/.config/nvim"
 alias vim="nvim"
 alias Vim="/usr/bin/vim"
 alias lg="lazygit"
 alias ..="cd .."
-alias daprstartup="podman start \$(podman container list -a -f \"name=dapr\" -q)"
 alias tf=terraform
+alias pd=pushd
+alias pod=popd
 
 # Functions
 killp() {
@@ -47,6 +51,11 @@ killp() {
     if [ "$pid" != "" ]; then
         echo $pid | xargs sudo kill -${1:-9}
     fi
+}
+
+scratch() {
+  local dir=$(mktemp -d)
+  pushd $dir
 }
 
 # History
@@ -73,5 +82,8 @@ ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
 
 source ~/.zshrc.prompt
 
+source "$HOME/.zshrc.$HOST" 2> /dev/null
+
 eval "$(fzf --zsh)"
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"

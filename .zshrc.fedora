@@ -1,0 +1,1 @@
+alias daprstartup="podman start \$(podman container list -a -f \"name=dapr\" -q)"

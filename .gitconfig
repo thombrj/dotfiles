@@ -15,11 +15,10 @@
   last = log -1 HEAD
   pushfwl = push --force-with-lease
   wip = !git add . && git commit -a -m WIP
-  coa = !git add -A && git commit -m
   cob = checout -b
   resetfile = checkout HEAD --
   resetlast = reset HEAD~1
-  co = commit
+  com = commit
   st = status -s
   br = "!checkout_fzf() { git branch | fzf | xargs git checkout; }; checkout_fzf"
   db = "!delete_fzf() { git branch | fzf -m | xargs git branch -D; }; delete_fzf"
@@ -41,5 +40,3 @@
   tool = vimdiff
 [mergetool]
   keepBackup = false
-[url "git@github.com:"]
-  insteadOf = "gh:"

@@ -28,6 +28,7 @@ tmux_running=$(pgrep tmux)
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     echo "Not in tmux session, tmux not running"
     tmux new-session -s $selected_name -c $selected
+    export TMUX_ROOT=$session
     exit 0
 fi
 

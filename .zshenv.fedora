@@ -1,0 +1,3 @@
+alias pdt="flatpak run io.podman_desktop.PodmanDesktop"
+
+appendPath "/opt/azure-functions-cli"

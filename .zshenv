@@ -1,15 +1,22 @@
-alias pdt="flatpak run io.podman_desktop.PodmanDesktop"
-
 # Path modifications
-appendPath() {
-  export PATH="$PATH:$1"
+export appendPath() {
+  NEW_PATH=$1
+
+  if [[ ":$PATH:" != *":$NEW_PATH:"* ]]; then
+      export PATH="$PATH:$NEW_PATH"
+  fi
 }
 
 appendPath "$HOME/.local/bin"
 appendPath "$HOME/.dotnet/tools"
 appendPath "$HOME/roslyn/linux-x64/"
-appendPath "$HOME/.pulumi/bin"
-appendPath "/opt/azure-functions-cli"
 appendPath "/snap/bin"
 
-source $HOME/.zshsecrets
+if [[ -d ~/dotfiles/$(hostname)/scripts ]]; then
+  appendPath "$HOME/dotfiles/$(hostname)/scripts"
+fi
+
+source "$HOME/.zsh.secrets" 2> /dev/null
+source "$HOME/.zshenv.$HOST" 2> /dev/null
+
+FOSSA_TELEMETRY_SCOPE=off
