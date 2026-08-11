@@ -5,7 +5,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require('fzf-lua').setup({
-      keymap = {
+      keymap               = {
         builtin = {
           true,
           ["<C-d>"] = "preview-page-down",
@@ -18,8 +18,14 @@ return {
           ["ctrl-q"] = "select-all+accept",
         },
       },
-      files  = {
-        follow = true
+      files                = {
+        follow = true,
+        fd_opts = [[--exclude bin --exclude obj ]]
+      },
+      file_ignore_patterns = {
+        "%.git/",
+        "bin/",
+        "obj/"
       }
     })
     vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", { desc = "find files with fzf" })
