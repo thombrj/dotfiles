@@ -1,0 +1,8 @@
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("clangd")
+vim.lsp.enable("jsonls")
+vim.lsp.enable("powershell_es")
+vim.lsp.enable("terraformls")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("gh_actions_ls")
+vim.lsp.enable("yamlls")
