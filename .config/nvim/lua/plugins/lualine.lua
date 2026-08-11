@@ -9,8 +9,20 @@ return {
           {
             'filename',
             path = 1
-          }
-        }
+          },
+        },
+          lualine_x = {
+            {
+              'lsp_status',
+              icon = '', -- f013
+              symbols = {
+                spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                done = '✓',
+                separator = ' ',
+              },
+              ignore_lsp = {},
+            }
+          },
       }
     }
   },
