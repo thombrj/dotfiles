@@ -95,3 +95,4 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$PATH:/opt/azure-functions-cli"
+. "/home/bryce/.deno/env"
