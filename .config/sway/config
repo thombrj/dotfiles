@@ -6,7 +6,7 @@ set $down j
 set $up k
 set $right l
 
-set $term kitty
+set $term alacritty
 
 set $rofi_cmd rofi -terminal '$term'
 
@@ -166,9 +166,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bar { 
-     swaybar_command waybar
-}
+exec dms run
 
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf")'
 
