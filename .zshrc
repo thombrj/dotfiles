@@ -35,12 +35,13 @@ alias la='ls -A'
 alias ll='ls -alG'
 alias ls='ls --color'
 alias azuritedev='~/dotfiles/scripts/azurite.sh'
-alias zshrc="nvim ~/.zshrc"
+command -v nvim &> /dev/null && alias vim="nvim"
+alias zshrc="vim ~/.zshrc"
 alias nvimconf="vim ~/.config/nvim"
-alias vim="nvim"
 alias Vim="/usr/bin/vim"
 alias lg="lazygit"
 alias ..="cd .."
+alias ...="cd ..."
 alias tf=terraform
 alias pd=pushd
 alias pod=popd
@@ -86,4 +87,5 @@ source "$HOME/.zshrc.$HOST" 2> /dev/null
 
 eval "$(fzf --zsh)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+[ -f ~/.linuxbrew/bin/brew ] && eval $(~/.linuxbrew/bin/brew shellenv)
+command -v brew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
