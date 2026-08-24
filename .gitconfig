@@ -15,6 +15,7 @@
   last = log -1 HEAD
   pushfwl = push --force-with-lease
   wip = !git add . && git commit -a -m WIP
+  co = checkout
   cob = checout -b
   resetfile = checkout HEAD --
   resetlast = reset HEAD~1

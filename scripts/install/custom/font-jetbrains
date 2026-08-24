@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+VERSION="3.5.1"
+PACKAGE="JetBrainsMono.zip"
+DIR=$(mktemp -d)
+trap 'rm -rf "$DIR"' EXIT
+mkdir -p ~/.local/share/fonts
+
+cd "$DIR" || exit 1
+wget -4 -O "$PACKAGE" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$VERSION/JetBrainsMono.zip"
+unzip -o "$PACKAGE" '*.ttf' -d ~/.local/share/fonts
+fc-cache -fv
