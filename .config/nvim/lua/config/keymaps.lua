@@ -4,9 +4,6 @@ local map = vim.keymap.set
 
 map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
-map("n", "<leader>ee", ":Ex<CR>")
-map("n", "<A-n>", ":Explore<CR>")
-
 map("n", "<leader><C-a>", "maggVG", { desc = "Select all, mark register a" })
 map("n", "<leader>yy", "<cmd>%+y<CR>", { desc = "Yank all" })
 map("n", "<leader>D", "<cmd>%+d<CR>", { desc = "Delete all" })

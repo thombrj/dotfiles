@@ -2,8 +2,9 @@
   name = Bryce Thompson
   email = 9068303+thombrj@users.noreply.github.com
 [core]
-  editor = vim
+  editor = nvim
   autocrlf = input
+  pager = delta
 [advice]
   addEmptyPathspec = false
   pushNonFastForward = false
@@ -16,7 +17,7 @@
   pushfwl = push --force-with-lease
   wip = !git add . && git commit -a -m WIP
   co = checkout
-  cob = checout -b
+  cob = checkout -b
   resetfile = checkout HEAD --
   resetlast = reset HEAD~1
   com = commit
@@ -41,3 +42,13 @@
   tool = vimdiff
 [mergetool]
   keepBackup = false
+[url "git@github.com:"]
+  insteadOf = "gh:"
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[rerere]
+  enabled = true
